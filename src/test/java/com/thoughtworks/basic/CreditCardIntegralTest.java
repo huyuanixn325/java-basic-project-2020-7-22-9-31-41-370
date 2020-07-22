@@ -29,4 +29,15 @@ public class CreditCardIntegralTest {
         //then
         Assert.assertEquals(new BigDecimal(10),result);
     }
+
+    @Test
+    public void should_return_10_when_given_normal_user_pos_amont_208(){
+        //given
+        Consume consume = new Consume("normal","2020-07-01 18:40","POS",new BigDecimal(208));
+        CreditCardIntegral creditCardIntegral = new CreditCardIntegral(consume);
+        //when
+        BigDecimal result=creditCardIntegral.countIntegral();
+        //then
+        Assert.assertEquals(new BigDecimal(20),result);
+    }
 }
