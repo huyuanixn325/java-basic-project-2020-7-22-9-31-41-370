@@ -25,7 +25,7 @@ public class CreditCardIntegral {
     public BigDecimal countIntegral() {
         BigDecimal integral = new BigDecimal(0);
         for (CalculateIntegral integral1:integrals){
-            integral.add(integral1.countIntegral(consume));
+            integral =integral.add(integral1.countIntegral(consume));
         }
         return integral;
     }
