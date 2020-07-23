@@ -255,4 +255,43 @@ public class CreditCardIntegralTest {
         //then
         Assert.assertEquals(expectresult,result);
     }
+
+    @Test
+    public void should_return_1122_when_given_normal_user_pos_amont_6400_208__25(){
+        //given
+        Consume consume = new Consume("normal","2020-07-02 23:00","信用卡分期购物消费",new BigDecimal(6400));
+        Consume consumeH = new Consume("normal","2020-07-02 22:30","快捷支付消费",new BigDecimal(2208));
+        Consume consumeA = new Consume("normal","2020-07-02 20:30","快捷支付消费",new BigDecimal(208));
+        Consume consumeB = new Consume("normal","2020-07-02 18:50","POS机消费",new BigDecimal(208));
+        Consume consumeC = new Consume("normal","2020-07-02 12:20","微信支付消费",new BigDecimal(22));
+        Consume consumeD = new Consume("normal","2020-07-02 08:20","微信支付消费",new BigDecimal(10));
+        Consume consumeE = new Consume("normal","2020-07-01 18:50","POS机消费",new BigDecimal(108));
+        Consume consumeF = new Consume("normal","2020-07-01 12:50","微信支付消费",new BigDecimal(18));
+        Consume consumeG = new Consume("normal","2020-07-01 12:20","微信支付消费",new BigDecimal(25));
+        List<Consume> consumes = new ArrayList<>();
+        consumes.add(consume);
+        consumes.add(consumeH);
+        consumes.add(consumeA);
+        consumes.add(consumeB);
+        consumes.add(consumeC);
+        consumes.add(consumeD);
+        consumes.add(consumeE);
+        consumes.add(consumeF);
+        consumes.add(consumeG);
+        CreditCardIntegral creditCardIntegral = new CreditCardIntegral(consumes);
+        String expectresult = "总积分：1122\n" +
+                "2020-07-02 23:00 信用卡分期购物消费 6400元，积分 +740\n"+
+                "2020-07-02 22:30 快捷支付消费 2208元，积分 +320\n" +
+                "2020-07-02 20:30 快捷支付消费 208元，积分 +30\n" +
+                "2020-07-02 18:50 POS机消费 208元，积分 +20\n" +
+                "2020-07-02 12:20 微信支付消费 22元，积分 +1\n" +
+                "2020-07-02 08:20 微信支付消费 10元，积分 +0\n" +
+                "2020-07-01 18:50 POS机消费 108元，积分 +10\n" +
+                "2020-07-01 12:50 微信支付消费 18元，积分 +0\n" +
+                "2020-07-01 12:20 微信支付消费 25元，积分 +1";
+        //when
+        String  result=creditCardIntegral.countIntegral();
+        //then
+        Assert.assertEquals(expectresult,result);
+    }
 }
