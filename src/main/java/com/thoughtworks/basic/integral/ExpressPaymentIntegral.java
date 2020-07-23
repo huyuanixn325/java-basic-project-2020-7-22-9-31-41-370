@@ -11,6 +11,7 @@ public class ExpressPaymentIntegral implements CalculateIntegral {
             BigDecimal count = consume.getConsumeAmout().divideToIntegralValue(new BigDecimal(10));
             consume.addBigDecimal(count.multiply(new BigDecimal(1)));
             BigDecimal extralCount = consume.getConsumeAmout().divideToIntegralValue(new BigDecimal(100));
+            if (extralCount.compareTo(new BigDecimal(20))==1) extralCount=new BigDecimal(20);
             consume.addBigDecimal(extralCount.multiply(new BigDecimal(5)));
         }
     }
