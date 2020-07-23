@@ -156,4 +156,21 @@ public class CreditCardIntegralTest {
         Assert.assertEquals(expectresult,result);
     }
 
+    @Test
+    public void should_return_30_when_given_normal_user_pos_amont_208_wechat_25(){
+        //given
+        Consume consume = new Consume("normal","2020-07-02 20:30","快捷支付消费",new BigDecimal(208));
+        Consume consumeA = new Consume("normal","2020-07-02 08:20","微信支付消费",new BigDecimal(25));
+        List<Consume> consumes = new ArrayList<>();
+        consumes.add(consume);
+        consumes.add(consumeA);
+        CreditCardIntegral creditCardIntegral = new CreditCardIntegral(consumes);
+        String expectresult = "总积分：31\n" +
+                "2020-07-02 20:30 快捷支付消费 208元，积分 +30\n"+
+                "2020-07-02 08:20 微信支付消费 25元，积分 +1";
+        //when
+        String  result=creditCardIntegral.countIntegral();
+        //then
+        Assert.assertEquals(expectresult,result);
+    }
 }
