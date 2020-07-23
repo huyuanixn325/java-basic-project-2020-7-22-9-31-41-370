@@ -90,4 +90,23 @@ public class CreditCardIntegralTest {
         //then
         Assert.assertEquals(expectresult,result);
     }
+
+    @Test
+    public void should_return_1_when_given_normal_user_pos_amont_25_10(){
+        //given
+        Consume consume = new Consume("normal","2020-07-02 08:20","微信支付消费",new BigDecimal(25));
+        Consume consumeA = new Consume("normal","2020-07-02 08:35","微信支付消费",new BigDecimal(10));
+
+        List<Consume> consumes = new ArrayList<>();
+        consumes.add(consume);
+        consumes.add(consumeA);
+        CreditCardIntegral creditCardIntegral = new CreditCardIntegral(consumes);
+        String expectresult = "总积分：1\n" +
+                "2020-07-02 08:20 微信支付消费 25元，积分 +1\n"+
+                "2020-07-02 08:35 微信支付消费 10元，积分 +0";
+        //when
+        String  result=creditCardIntegral.countIntegral();
+        //then
+        Assert.assertEquals(expectresult,result);
+    }
 }
