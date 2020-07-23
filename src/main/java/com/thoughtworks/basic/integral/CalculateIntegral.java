@@ -6,5 +6,5 @@ import java.math.BigDecimal;
 
 public interface CalculateIntegral {
 
-    public abstract BigDecimal countIntegral(Consume consume);
+    public abstract void countIntegral(Consume consume);
 }

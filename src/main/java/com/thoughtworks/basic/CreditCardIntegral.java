@@ -8,11 +8,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CreditCardIntegral {
-    private Consume consume;
+    private List<Consume> consumes;
     private List<CalculateIntegral> integrals = new ArrayList<>();
 
-    public CreditCardIntegral(Consume consume) {
-        this.consume = consume;
+    public CreditCardIntegral(List<Consume> consumes) {
+        this.consumes = consumes;
         initIntegrals();
     }
 
@@ -24,8 +24,11 @@ public class CreditCardIntegral {
 
     public BigDecimal countIntegral() {
         BigDecimal integral = new BigDecimal(0);
-        for (CalculateIntegral integral1:integrals){
-            integral =integral.add(integral1.countIntegral(consume));
+        for (Consume consume :consumes){
+            for (CalculateIntegral integral1:integrals){
+                integral1.countIntegral(consume);
+                integral =integral.add(consume.getIntegral());
+            }
         }
         return integral;
     }
