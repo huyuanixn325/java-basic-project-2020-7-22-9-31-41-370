@@ -2,6 +2,7 @@ package com.thoughtworks.basic;
 
 import com.thoughtworks.basic.integral.CalculateIntegral;
 import com.thoughtworks.basic.integral.PosIntegral;
+import com.thoughtworks.basic.integral.WechatIntegral;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -20,6 +21,7 @@ public class CreditCardIntegral {
 
     private void initIntegrals(){
         integrals.add(new PosIntegral());
+        integrals.add(new WechatIntegral());
     }
 
     public String countIntegral() {
@@ -29,8 +31,8 @@ public class CreditCardIntegral {
         for (Consume consume :consumes){
             for (CalculateIntegral integral1:integrals){
                 integral1.countIntegral(consume);
-                integral =integral.add(consume.getIntegral());
             }
+            integral =integral.add(consume.getIntegral());
             resultContent = resultContent+"\n"+consume.getConsumeTime()+" "+consume.getConsumeType()+" "+consume.getConsumeAmout()+"元，"+"积分 +"+consume.getIntegral();
         }
         resultAmount = resultAmount+integral+resultContent;
