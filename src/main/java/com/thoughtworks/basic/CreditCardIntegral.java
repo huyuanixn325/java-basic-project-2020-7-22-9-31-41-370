@@ -1,6 +1,7 @@
 package com.thoughtworks.basic;
 
 import com.thoughtworks.basic.integral.CalculateIntegral;
+import com.thoughtworks.basic.integral.ExpressPaymentIntegral;
 import com.thoughtworks.basic.integral.PosIntegral;
 import com.thoughtworks.basic.integral.WechatIntegral;
 
@@ -22,6 +23,7 @@ public class CreditCardIntegral {
     private void initIntegrals(){
         integrals.add(new PosIntegral());
         integrals.add(new WechatIntegral());
+        integrals.add(new ExpressPaymentIntegral());
     }
 
     public String countIntegral() {

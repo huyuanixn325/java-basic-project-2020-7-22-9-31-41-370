@@ -140,4 +140,20 @@ public class CreditCardIntegralTest {
         //then
         Assert.assertEquals(expectresult,result);
     }
+
+    @Test
+    public void should_return_30_when_given_normal_user_pos_amont_208(){
+        //given
+        Consume consume = new Consume("normal","2020-07-02 20:30","快捷支付消费",new BigDecimal(208));
+        List<Consume> consumes = new ArrayList<>();
+        consumes.add(consume);
+        CreditCardIntegral creditCardIntegral = new CreditCardIntegral(consumes);
+        String expectresult = "总积分：30\n" +
+                "2020-07-02 20:30 快捷支付消费 208元，积分 +30";
+        //when
+        String  result=creditCardIntegral.countIntegral();
+        //then
+        Assert.assertEquals(expectresult,result);
+    }
+
 }
