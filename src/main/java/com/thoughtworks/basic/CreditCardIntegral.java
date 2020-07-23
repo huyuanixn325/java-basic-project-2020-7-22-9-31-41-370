@@ -22,14 +22,19 @@ public class CreditCardIntegral {
         integrals.add(new PosIntegral());
     }
 
-    public BigDecimal countIntegral() {
+    public String countIntegral() {
+        String resultAmount = "总积分：";
+        String resultContent = "";
         BigDecimal integral = new BigDecimal(0);
         for (Consume consume :consumes){
             for (CalculateIntegral integral1:integrals){
                 integral1.countIntegral(consume);
                 integral =integral.add(consume.getIntegral());
             }
+            resultContent = "\n"+consume.getConsumeTime()+" "+consume.getConsumeType()+" "+consume.getConsumeAmout()+"元，"+"积分 +"+consume.getIntegral();
         }
-        return integral;
+        resultAmount = resultAmount+integral+resultContent;
+        return resultAmount;
     }
+
 }
