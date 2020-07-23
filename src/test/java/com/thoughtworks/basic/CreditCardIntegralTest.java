@@ -54,4 +54,25 @@ public class CreditCardIntegralTest {
         //then
         Assert.assertEquals(expectresult,result);
     }
+
+    @Test
+    public void should_return_30_when_given_normal_user_pos_amont_8_108_208(){
+        //given
+        Consume consumeA = new Consume("normal","2020-07-02 18:50","POS机消费",new BigDecimal(8));
+        Consume consume = new Consume("normal","2020-07-02 18:40","POS机消费",new BigDecimal(108));
+        Consume consumeB = new Consume("normal","2020-07-02 18:40","POS机消费",new BigDecimal(208));
+        List<Consume> consumes = new ArrayList<>();
+        consumes.add(consumeA);
+        consumes.add(consume);
+        consumes.add(consumeB);
+        CreditCardIntegral creditCardIntegral = new CreditCardIntegral(consumes);
+        String expectresult = "总积分：30\n" +
+                "2020-07-02 18:50 POS机消费 8元，积分 +0\n"+
+                "2020-07-02 18:40 POS机消费 108元，积分 +10\n"+
+                "2020-07-02 18:40 POS机消费 208元，积分 +20";
+        //when
+        String  result=creditCardIntegral.countIntegral();
+        //then
+        Assert.assertEquals(expectresult,result);
+    }
 }

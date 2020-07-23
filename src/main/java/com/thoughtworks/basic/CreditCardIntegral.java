@@ -31,7 +31,7 @@ public class CreditCardIntegral {
                 integral1.countIntegral(consume);
                 integral =integral.add(consume.getIntegral());
             }
-            resultContent = "\n"+consume.getConsumeTime()+" "+consume.getConsumeType()+" "+consume.getConsumeAmout()+"元，"+"积分 +"+consume.getIntegral();
+            resultContent = resultContent+"\n"+consume.getConsumeTime()+" "+consume.getConsumeType()+" "+consume.getConsumeAmout()+"元，"+"积分 +"+consume.getIntegral();
         }
         resultAmount = resultAmount+integral+resultContent;
         return resultAmount;
