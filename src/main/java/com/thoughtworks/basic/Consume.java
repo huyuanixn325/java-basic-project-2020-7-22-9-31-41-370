@@ -3,14 +3,14 @@ package com.thoughtworks.basic;
 import java.math.BigDecimal;
 
 public class Consume {
-    private  String normal;
+    private  String cardType;
     private  String consumeTime;
     private  String consumeType;
     private  BigDecimal consumeAmout;
     private BigDecimal integral;
 
-    public Consume(String normal, String consumeTime, String consumeType, BigDecimal consumeAmout) {
-        this.normal = normal;
+    public Consume(String cardType, String consumeTime, String consumeType, BigDecimal consumeAmout) {
+        this.cardType = cardType;
         this.consumeTime = consumeTime;
         this.consumeType = consumeType;
         this.consumeAmout = consumeAmout;
@@ -18,7 +18,7 @@ public class Consume {
     }
 
     public String getNormal() {
-        return normal;
+        return cardType;
     }
 
     public String getConsumeTime() {
@@ -42,6 +42,6 @@ public class Consume {
     }
 
     public Boolean isGoldcardUser(){
-        return  ("goldcardUser".equals(this.normal));
+        return  ("goldcardUser".equals(this.cardType));
     }
 }
