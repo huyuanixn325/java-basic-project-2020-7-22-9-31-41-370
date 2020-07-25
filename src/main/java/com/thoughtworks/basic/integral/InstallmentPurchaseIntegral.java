@@ -14,4 +14,12 @@ public class InstallmentPurchaseIntegral implements CalculateIntegral {
             consume.addBigDecimal(new BigDecimal(100));
         }
     }
+
+    @Override
+    public void countExtraIntegral(Consume consume) {
+        if ("信用卡分期购物消费".equals(consume.getConsumeType())&&consume.isGoldcardUser()) {
+            BigDecimal count = consume.getConsumeAmout().divideToIntegralValue(new BigDecimal(10));
+            consume.addBigDecimal(count.multiply(new BigDecimal(1)).multiply(new BigDecimal(0.5)).setScale(0,BigDecimal.ROUND_DOWN));
+        }
+    }
 }

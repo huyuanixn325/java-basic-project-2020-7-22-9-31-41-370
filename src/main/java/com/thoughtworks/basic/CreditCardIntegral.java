@@ -31,7 +31,7 @@ public class CreditCardIntegral {
         for (Consume consume :consumes){
             for (CalculateIntegral integral1:integrals){
                 integral1.countIntegral(consume);
-                consume.goldCardIntegral();
+                integral1.countExtraIntegral(consume);
             }
             integral =integral.add(consume.getIntegral());
             resultContent = resultContent+"\n"+consume.getConsumeTime()+" "+consume.getConsumeType()+" "+consume.getConsumeAmout()+"元，"+"积分 +"+consume.getIntegral();

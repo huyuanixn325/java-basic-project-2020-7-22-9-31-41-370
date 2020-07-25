@@ -41,10 +41,7 @@ public class Consume {
         this.integral = this.integral.add(integral);
     }
 
-    public void goldCardIntegral(){
-        if ("goldcardUser".equals(this.normal)){
-            this.integral=this.integral.add(this.integral.multiply(new BigDecimal(0.5)));
-            this.integral = this.integral.setScale(0,BigDecimal.ROUND_DOWN);
-        }
+    public Boolean isGoldcardUser(){
+        return  ("goldcardUser".equals(this.normal));
     }
 }
